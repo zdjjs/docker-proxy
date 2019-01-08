@@ -9,7 +9,8 @@ RUN apk --no-cache update \
 && mv entrykit /usr/local/bin/ \
 && entrykit --symlink \
 && wget https://github.com/ufoscout/docker-compose-wait/releases/download/2.4.0/wait \
-&& chmod +x /wait
+&& chmod +x /wait \
+&& mv wait /usr/local/bin/
 
 COPY ./generate_cert.sh /
 COPY ./hosts.sh /
@@ -23,7 +24,7 @@ ENTRYPOINT [ \
 "--", \
 "prehook",  \
 	"sh /generate_cert.sh",  \
-	"/wait", \
+	"wait", \
 "--", \
 "nginx" \
 ]
