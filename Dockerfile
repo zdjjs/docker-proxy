@@ -16,11 +16,11 @@ COPY ./generate_cert.sh /
 COPY ./hosts.sh /
 
 ENTRYPOINT [ \
-"switch", \
-	"hosts=sh /hosts.sh", \
-"--", \
 "render", \
 	"/etc/nginx/nginx.conf", \
+"--", \
+"switch", \
+	"hosts=sh /hosts.sh", \
 "--", \
 "prehook",  \
 	"sh /generate_cert.sh",  \
